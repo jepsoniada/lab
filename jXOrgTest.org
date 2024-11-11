@@ -1,0 +1,67 @@
+-*- org-confirm-babel-evaluate: nil -*-
+
+* checking types in J
+
+there are 3 fundamental types:
+- number
+- character
+- box
+
+- number
+- string :: may be a list
+- list :: 1d colection
+
+** shape
+
+#+begin_src j :results verbatim
+  (] #~ 1 + '''' = ]) 'qwer''asdf''zxcv'
+#+end_src
+
+#+RESULTS:
+: qwer''asdf''zxcv
+
+*** arrays
+
+#+name: qwer
+#+begin_src emacs-lisp
+  '((0 0 0) (0 0 0) (0 0 0))
+#+end_src
+
+#+name: asdf
+#+begin_src j
+  (<"0) 3 3 $ 0
+#+end_src
+
+#+RESULTS: asdf
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+| 0 | 0 | 0 |
+
+#+name: zxcv
+| 0 | asdf | 0 |
+| 0 |    0 | 0 |
+| 0 |    0 | 0 |
+
+#+begin_src j :results verbatim :var a=zxcv
+  (3!:0)&> a
+#+end_src
+
+#+RESULTS:
+: 1 2 1
+: 1 1 1
+: 1 1 1
+
+* noweb
+
+#+name: avg
+#+begin_src j
+  avg =: +/ % #
+#+end_src
+
+#+begin_src j :noweb yes
+  <<avg>>
+  avg 4 2 4
+#+end_src
+
+#+RESULTS:
+| 3.33333 |

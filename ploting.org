@@ -1,0 +1,14 @@
+#+name: sin
+#+begin_src python
+  import math
+  import itertools
+  return [[x, math.sin(x*1)] for x in \
+          (lambda a: map(lambda b: b[1] - ((b[1] / (a)) * (1 + b[0]))
+                         , enumerate(itertools.repeat(math.pi*2,a))))(100)]
+#+end_src
+
+#+plot: ind:1
+#+begin_src elisp :var sin=sin
+  (nconc `(("x" "y") hline)
+         sin)
+#+end_src

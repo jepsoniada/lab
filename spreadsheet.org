@@ -1,0 +1,8 @@
+| # | a | 3 | 2 | 0 | 5 |  1.66667 |
+| # | b | 0 | 0 | 1 | 1 | 0.333333 |
+#+tblfm: $6='(+ $3..$5);N::$7='(org-sbe mean (data '($3..$5)));N
+
+#+name: mean
+#+begin_src j :var data=0
+  (+/ % #) data
+#+end_src

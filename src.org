@@ -1,0 +1,30 @@
+#+name: a
+| 9 | 2 | 3 | 4 |
+| 1 | 0 | 3 | 4 |
+|---+---+---+---|
+| 1 | 2 | 9 | 4 |
+| 1 | 2 | 3 | 0 |
+
+#+name: b
+| a |
+| b |
+
+#+name: c
+| a | b |
+
+#+begin_src J :var a=a b=b c=c
+  +/a
+#+end_src
+
+#+RESULTS:
+: 12 6 18 12
+
+#+begin_src emacs-lisp :var a=a
+  '((1) hline (2))
+#+end_src
+
+#+RESULTS:
+| 1 |
+|---|
+| 2 |
+
