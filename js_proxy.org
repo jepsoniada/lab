@@ -4,6 +4,11 @@
                                   ? [[head, a], ...tail]
                                   : [a, head, ...tail], [this.slice(0, n)])
   }
+  Array.prototype.peek = function (fn) {
+      this.forEach(fn)
+      return this
+  }
+  Object.prototype.apply = function (fn) { return fn(this) }
 
   let method = new Proxy({}, {
       get(_, prop) {
@@ -18,7 +23,6 @@
               ]
           ],
       apply(_, __, args) {
-          // return `[${this.op.join("asdf")}]`
           if (!this.op.includes(args[0][0])) {
               throw "not an operator"
           }
@@ -26,14 +30,16 @@
       }
   })
 
-  let [_, __] = [operator, method]
+  let [__, _] = [operator, method]
 
   // return _`+`(1, 2)
   // return [1,2,3].reduce(_`+`)
   // return [[1,2]].map(__.reduce((acc, a) => acc + a)
   // return [[1,2]].map(__.reduce(_`+`))
-  return [[1,9],[2,8]].map(__.reduce(_`+`))
+  return [[1,9],[2,8]].map(_.reduce(__`+`))
 #+end_src
 
 #+RESULTS:
 | 10 | 10 |
+
+
